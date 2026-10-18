@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d13">
+  <meta name="description" content="Geizub — пакеты игровых прохождений, гайдов и пошаговых инструкций.">
+  <title>Geizub — магазин игровых материалов</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #090b10;
+      --card: #11151d;
+      --card2: #0d1118;
+      --line: #242c39;
+      --text: #f1f4f8;
+      --muted: #9ba6b5;
+      --accent: #68e0c0;
+      --accent2: #8da5ff;
+      --accent-soft: rgba(104,224,192,.10);
+      --radius: 19px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(70,101,166,.15), transparent 32rem),
+        radial-gradient(ellipse at 4% 40%, rgba(104,224,192,.045), transparent 28rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(640px, calc(100% - 32px)); margin: 0 auto; }
+    .header { padding: 30px 0 0; }
+    .brand { display: flex; justify-content: center; align-items: center; gap: 11px; font-weight: 900; font-size: 1.14rem; letter-spacing: -.04em; }
+    .brand-mark {
+      position: relative; width: 48px; height: 48px; border-radius: 16px; display: grid; place-items: center;
+      border: 1px solid rgba(104,224,192,.45);
+      background: linear-gradient(145deg, rgba(104,224,192,.19), rgba(141,165,255,.16));
+      color: var(--accent); font-size: 1.2rem; font-weight: 950;
+      box-shadow: 0 0 36px rgba(104,224,192,.10);
+    }
+    .brand-mark::after { content: ""; position: absolute; inset: 6px; border: 1px solid rgba(141,165,255,.45); border-radius: 11px; transform: rotate(12deg); }
+    .brand-name em { color: var(--accent); font-style: normal; }
+    .hero { text-align: center; padding: 28px 0 30px; border-bottom: 1px solid var(--line); }
+    h1 { margin: 18px 0 10px; font-size: clamp(1.8rem, 5vw, 2.25rem); line-height: 1.14; letter-spacing: -.045em; }
+    .hero p { color: #bec5d0; margin: 0 auto; max-width: 580px; font-size: .98rem; }
+    .hero p strong { color: var(--text); }
+    .catalog { padding: 24px 0 40px; }
+    .product {
+      position: relative; padding: 18px 18px 19px; margin: 0 0 14px; overflow: hidden;
+      background: linear-gradient(145deg, var(--card), var(--card2));
+      border: 1px solid rgba(164,184,213,.12); border-radius: var(--radius);
+      box-shadow: 0 16px 44px rgba(0,0,0,.20);
+    }
+    .product::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 3px; background: linear-gradient(180deg, var(--accent), var(--accent2)); }
+    .product.featured { border-color: rgba(104,224,192,.24); background: radial-gradient(ellipse at 100% 0%, rgba(104,224,192,.07), transparent 45%), linear-gradient(145deg, #131923, #0d1118); }
+    .product-head { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; }
+    h2 { margin: 0; font-size: 1.34rem; line-height: 1.25; letter-spacing: -.035em; }
+    .badge { display: inline-flex; align-items: center; padding: 3px 9px; font-size: .68rem; font-weight: 800; color: var(--accent); border: 1px solid rgba(104,224,192,.25); background: var(--accent-soft); border-radius: 999px; white-space: nowrap; }
+    .badge.blue { color: #aabaff; border-color: rgba(141,165,255,.25); background: rgba(141,165,255,.09); }
+    .description { color: var(--muted); font-size: .91rem; margin: 6px 0 13px; }
+    .package-facts { list-style: none; padding: 0; margin: 0 0 17px; display: grid; gap: 6px; color: #d2d8e0; font-size: .91rem; }
+    .package-facts li { display: flex; gap: 9px; align-items: flex-start; }
+    .tick { color: var(--accent); font-weight: 950; flex: 0 0 auto; }
+    .capacity { color: var(--text); font-weight: 750; }
+    .price-box { background: rgba(255,255,255,.025); border: 1px solid rgba(164,184,213,.12); border-radius: 12px; padding: 9px 12px; }
+    .price-row { display: flex; justify-content: space-between; gap: 16px; align-items: center; font-size: .87rem; }
+    .price-row + .price-row { margin-top: 3px; }
+    .price-row span { color: var(--muted); }
+    .price-row strong { font-weight: 800; }
+    .button {
+      width: 100%; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      border-radius: 999px; margin-top: 13px; padding: 12px 18px; text-align: center; font-weight: 850; font-size: .94rem;
+      color: #07120f; background: linear-gradient(100deg, var(--accent), #91efd8);
+      box-shadow: 0 8px 25px rgba(104,224,192,.11); border: 1px solid rgba(255,255,255,.32);
+      transition: transform .18s ease, filter .18s ease;
+    }
+    .button:hover { transform: translateY(-2px); filter: brightness(1.04); }
+    .button:focus-visible, a:focus-visible { outline: 2px solid var(--accent2); outline-offset: 3px; }
+    .button-secondary { background: linear-gradient(100deg, #9eafff, #c0c9ff); color: #0d1020; }
+    .free-copy { color: #c5ccd7; font-size: .9rem; margin: 8px 0 13px; }
+    .steps { list-style: none; padding: 0; margin: 0 0 14px; display: grid; gap: 8px; font-size: .86rem; color: #d1d7e0; }
+    .steps li { display: grid; grid-template-columns: 22px minmax(0,1fr); gap: 6px; align-items: start; }
+    .step-num { color: var(--accent); font-weight: 900; }
+    .inline-pill { color: var(--accent); border: 1px solid rgba(104,224,192,.24); background: rgba(104,224,192,.07); padding: 1px 5px; border-radius: 6px; white-space: nowrap; }
+    .note { margin: 10px 0 0; text-align: center; color: #858f9f; font-size: .75rem; }
+    footer { border-top: 1px solid var(--line); padding: 20px 0 28px; color: #808a99; font-size: .8rem; text-align: center; }
+    footer a { color: var(--accent); }
+    @media (max-width: 480px) {
+      .container { width: min(100% - 22px, 640px); }
+      .header { padding-top: 22px; }
+      .hero { padding: 24px 0 25px; }
+      .product { padding: 16px 14px 16px; }
+      h2 { font-size: 1.23rem; }
+      .description { font-size: .88rem; }
+      .price-row { font-size: .84rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a class="brand" href="#top" aria-label="Geizub — на главную">
+        <span class="brand-mark" aria-hidden="true">G</span>
+        <span class="brand-name">gei<em>zub</em></span>
+      </a>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <section class="hero">
+      <h1>Добро пожаловать в магазин!</h1>
+      <p>Выберите подходящий пакет и удобный способ связи. После согласования оплаты в Telegram поддержка расскажет, как получить выбранные материалы.</p>
+    </section>
+
+    <section class="catalog" aria-label="Пакеты магазина">
+      <article class="product featured">
+        <div class="product-head"><h2>Большой пакет</h2><span class="badge">Лучший выбор</span></div>
+        <p class="description">Максимальный объём и лучшее качество контента. Для тех, кому нужно всё и сразу.</p>
+        <ul class="package-facts">
+          <li><span class="tick">✓</span><span>Размер пакета: <b class="capacity">5 ТБ</b></span></li>
+          <li><span class="tick">✓</span><span>Более 150 000 видеоматериалов</span></li>
+          <li><span class="tick">✓</span><span>Постоянный доступ к архиву и закрытому каналу</span></li>
+          <li><span class="tick">✓</span><span>Регулярное пополнение новыми материалами</span></li>
+          <li><span class="tick">✓</span><span>Возможность сохранять контент себе</span></li>
+        </ul>
+        <div class="price-box" aria-label="Цены большого пакета">
+          <div class="price-row"><span>Рубли</span><strong>2 500 ₽</strong></div>
+          <div class="price-row"><span>Звёзды</span><strong>1 250 ⭐</strong></div>
+          <div class="price-row"><span>Доллары</span><strong>25 $</strong></div>
+          <div class="price-row"><span>Гривны</span><strong>1 250 ₴</strong></div>
+        </div>
+        <a class="button" href="https://t.me/LOKTIK_4" target="_blank" rel="noopener noreferrer">Купить 2 500 ₽ <span aria-hidden="true">↗</span></a>
+      </article>
+
+      <article class="product">
+        <div class="product-head"><h2>Средний пакет</h2><span class="badge blue">Популярный</span></div>
+        <p class="description">Лучшее соотношение цены и качества. Большой объём за разумные деньги.</p>
+        <ul class="package-facts">
+          <li><span class="tick">✓</span><span>Постоянный доступ к архиву и закрытому каналу</span></li>
+          <li><span class="tick">✓</span><span>Регулярное пополнение новыми материалами</span></li>
+          <li><span class="tick">✓</span><span>Возможность сохранять контент себе</span></li>
+        </ul>
+        <div class="price-box" aria-label="Цены среднего пакета">
+          <div class="price-row"><span>Рубли</span><strong>1 000 ₽</strong></div>
+          <div class="price-row"><span>Звёзды</span><strong>500 ⭐</strong></div>
+          <div class="price-row"><span>Доллары</span><strong>10 $</strong></div>
+          <div class="price-row"><span>Гривны</span><strong>500 ₴</strong></div>
+        </div>
+        <a class="button" href="https://t.me/LOKTIK_4" target="_blank" rel="noopener noreferrer">Купить 1 000 ₽ <span aria-hidden="true">↗</span></a>
+      </article>
+
+      <article class="product">
+        <div class="product-head"><h2>Маленький пакет</h2><span class="badge">Для старта</span></div>
+        <p class="description">Оптимальный выбор для тех, кто хочет получить хорошее качество контента за меньшую плату.</p>
+        <ul class="package-facts">
+          <li><span class="tick">✓</span><span>Размер пакета: <b class="capacity">100 ГБ</b></span></li>
+          <li><span class="tick">✓</span><span>Более 9 000 видеоматериалов</span></li>
+          <li><span class="tick">✓</span><span>Постоянный доступ к архиву и закрытому каналу</span></li>
+          <li><span class="tick">✓</span><span>Регулярное пополнение новыми материалами</span></li>
+          <li><span class="tick">✓</span><span>Возможность сохранять контент себе</span></li>
+        </ul>
+        <div class="price-box" aria-label="Цены маленького пакета">
+          <div class="price-row"><span>Рубли</span><strong>250 ₽</strong></div>
+          <div class="price-row"><span>Звёзды</span><strong>150 ⭐</strong></div>
+          <div class="price-row"><span>Доллары</span><strong>3 $</strong></div>
+          <div class="price-row"><span>Гривны</span><strong>150 ₴</strong></div>
+        </div>
+        <a class="button" href="https://t.me/LOKTIK_4" target="_blank" rel="noopener noreferrer">Купить 250 ₽ <span aria-hidden="true">↗</span></a>
+      </article>
+
+      <article class="product">
+        <div class="product-head"><h2>Бесплатный пакет</h2><span class="badge blue">Пробный · 250 ГБ</span></div>
+        <p class="free-copy">Попробуйте пробный пакет бесплатно по инструкции ниже, чтобы предварительно оценить материалы перед покупкой платного пакета.</p>
+        <ol class="steps">
+          <li><span class="step-num">1.</span><span>Размер пакета: 250 ГБ.</span></li>
+          <li><span class="step-num">2.</span><span>Введите в поиске TikTok запрос <span class="inline-pill">«детское питание»</span>.</span></li>
+          <li><span class="step-num">3.</span><span>Откройте <a href="https://vexen.cc/assets/images/zadanie-2.jpg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline">промо-фото</a> и опубликуйте его в комментариях к 10 разным видео.</span></li>
+          <li><span class="step-num">4.</span><span>В ответах на 5 других комментариев о Geizub оставьте по одному из сообщений: <span class="inline-pill">«рил выдали»</span>, <span class="inline-pill">«дали, спс»</span>, <span class="inline-pill">«есть выдача»</span>, <span class="inline-pill">«спасибо»</span> или <span class="inline-pill">«благодарочка»</span>.</span></li>
+          <li><span class="step-num">5.</span><span>Поставьте лайки своим комментариям и другим комментариям о Geizub.</span></li>
+          <li><span class="step-num">6.</span><span>Сделайте 10 полноэкранных скриншотов и отправьте их в службу поддержки.</span></li>
+        </ol>
+        <a class="button button-secondary" href="https://t.me/LOKTIK_4" target="_blank" rel="noopener noreferrer">Открыть службу поддержки <span aria-hidden="true">↗</span></a>
+        <p class="note">Заявки обрабатываются вручную. Условия и время выдачи бесплатного пакета уточняйте в Telegram.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">Geizub — магазин игровых материалов. © <span id="year">2026</span>. <a href="https://t.me/LOKTIK_4" target="_blank" rel="noopener noreferrer">Поддержка в Telegram</a></div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
